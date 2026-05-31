@@ -1,5 +1,5 @@
 ---
-name: hermes-text-game
+name: text-game
 description: 범용 텍스트 기반 인터랙티브 게임 스킬. 장르에 구애받지 않고 게임 마스터로서 사용자와 텍스트 게임을 진행합니다.
 version: 5.0.0
 author: Hana
