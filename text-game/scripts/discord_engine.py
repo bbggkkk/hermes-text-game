@@ -14,7 +14,8 @@ def format_for_discord(data):
     lines = []
     
     # 1. 제목 및 상황 묘사
-    lines.append(f"## 🎮 **{title}**")
+    lines.append(f"## ❖ **{title}** ❖")
+    lines.append("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     
     # Discord에서 blockquote 렌더링을 위해 각 줄에 > 를 붙임
     desc_lines = description.split('\n')
@@ -24,7 +25,7 @@ def format_for_discord(data):
     lines.append("")
     
     # 2. 상태창 (코드 블록을 사용하여 깔끔하게 정렬)
-    lines.append("📋 **현재 상태**")
+    lines.append("▤ **현재 상태**")
     lines.append("```yaml")
     if isinstance(status, dict) and status:
         for k, v in status.items():
@@ -38,21 +39,22 @@ def format_for_discord(data):
     
     # 3. 최근 이벤트
     if events:
-        lines.append("📰 **최근 이벤트**")
+        lines.append("◈ **최근 이벤트**")
         for event in events:
-            lines.append(f"- {event}")
+            lines.append(f"  - {event}")
         lines.append("")
         
     # 4. 선택지
+    lines.append("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     if game_over:
         lines.append("🛑 **게임 종료**")
         lines.append("> 플레이해주셔서 감사합니다. 재시작하려면 말씀해 주세요.")
     else:
-        lines.append("💡 **무엇을 할까요?** (번호나 텍스트로 입력)")
+        lines.append("💡 **무엇을 할까요?** `(번호나 텍스트로 입력)`")
         for choice in choices:
             key = choice.get("key", "")
             text = choice.get("text", "")
-            lines.append(f"🔹 **`{key}`** : {text}")
+            lines.append(f"  ▷ `[{key}]` {text}")
             
     return "\n".join(lines)
 
