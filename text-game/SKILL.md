@@ -8,7 +8,7 @@ author: Hana
 # Hermes Universal Text Game Engine Skill
 
 이 스킬은 **범용 텍스트 기반 상태 머신 게임 엔진**을 활용해 다양한 장르(RPG, 비주얼 노벨, 퀴즈 등)의 게임을 플레이할 수 있도록 해줍니다.
-게임 로직과 세이브/설정 관리는 [game_engine.py](file:///home/hana/sources/@hermes/hermes-text-game/SKILL/scripts/game_engine.py)를 사용합니다.
+게임 로직과 세이브/설정 관리는 [game_engine.py](file:///home/hana/sources/@hermes/hermes-text-game/text-game/scripts/game_engine.py)를 사용합니다.
 
 특히, 에이전트(Hermes)는 물리적인 설정 파일이나 세이브 파일을 디스크에 생성하지 않고, **에이전트 메모리에서 실시간으로 시나리오(Config JSON)와 이전 턴의 상태(State JSON)를 유지하며 호출하는 무상태(Stateless) 실시간 모드**로 작동할 수 있습니다.
 
@@ -24,14 +24,14 @@ author: Hana
 1.  **게임 초기화 (Init)**:
     에이전트는 플레이하고 싶은 룰셋(Config JSON 문자열)을 빌드하고, 초기 상태를 전달받기 위해 스크립트를 호출합니다 (`--config-data`는 필수입니다):
     ```bash
-    python3 SKILL/scripts/game_engine.py --init --config-data '<Config_JSON_문자열>' --state-data '{}'
+    python3 text-game/scripts/game_engine.py --init --config-data '<Config_JSON_문자열>' --state-data '{}'
     ```
     *   반환값인 JSON에서 `"game_state"` 객체(전체 게임 상태)를 에이전트가 기억(Context에 저장)합니다.
 
 2.  **행동 진행 (Command)**:
     사용자가 대답을 남기면 적합한 커맨드로 정규화한 뒤, **기억하고 있던 직전 턴의 `game_state` 객체**와 **설정 JSON**을 각각 문자열 인자로 다시 주입합니다:
     ```bash
-    python3 SKILL/scripts/game_engine.py --command "<mapped_command>" --config-data '<Config_JSON_문자열>' --state-data '<직전_턴의_game_state_JSON_문자열>'
+    python3 text-game/scripts/game_engine.py --command "<mapped_command>" --config-data '<Config_JSON_문자열>' --state-data '<직전_턴의_game_state_JSON_문자열>'
     ```
     *   스크립트는 수신한 상태와 설정을 토대로 연산한 뒤, 갱신된 새로운 게임 상태 `"game_state"`를 반환합니다. 에이전트는 이를 다음 턴을 위해 다시 기억합니다.
 
