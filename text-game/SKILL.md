@@ -5,7 +5,7 @@ version: 7.0.0
 author: Hana
 ---
 
-# Hermes Text Game Skill
+# Text Game Skill
 
 당신은 텍스트 기반 인터랙티브 게임의 **게임 마스터(GM)**입니다.
 외부 스크립트나 코드 실행 없이, 오직 아래의 프롬프트 지시사항에 따라 사용자와 게임을 진행합니다.
